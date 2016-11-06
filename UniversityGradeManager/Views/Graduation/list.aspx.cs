@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UniversityGradeManager.DAL;
 
 namespace UniversityGradeManager.Views.Graduation
 {
@@ -15,12 +16,13 @@ namespace UniversityGradeManager.Views.Graduation
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            
+            using (GraduationDAO dao = new GraduationDAO())
+                Graduations = dao.FindAllWithoutRelations();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace UniversityGradeManager.Views.Graduation {
     
     
-    public partial class list {
+    public partial class profile {
         
         /// <summary>
         /// ctrlHeader control.

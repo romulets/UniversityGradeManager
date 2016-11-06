@@ -8,7 +8,7 @@ namespace UniversityGradeManager.Entities
     public class Discipline
     {
 
-        private string _id;
+        private string _code;
         private string _name;
         private int _theorycClassesCount;
         private int _practiseClassesCount;
@@ -17,16 +17,16 @@ namespace UniversityGradeManager.Entities
         private int _clockHours;
         private string _preRequisite;
 
-        public string Id
+        public string Code
         {
             get
             {
-                return _id;
+                return _code;
             }
 
             set
             {
-                _id = value;
+                _code = value;
             }
         }
 

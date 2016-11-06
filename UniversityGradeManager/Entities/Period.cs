@@ -8,7 +8,7 @@ namespace UniversityGradeManager.Entities
     public class Period
     {
 
-        private int _id;
+        private int _number;
         private List<Discipline> _discplines;
 
         public Period()
@@ -16,16 +16,16 @@ namespace UniversityGradeManager.Entities
             _discplines = new List<Discipline>();
         }
 
-        public int Id
+        public int Number
         {
             get
             {
-                return _id;
+                return _number;
             }
 
             set
             {
-                _id = value;
+                _number = value;
             }
         }
 

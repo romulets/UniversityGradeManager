@@ -10,7 +10,7 @@
 namespace UniversityGradeManager.Views.Graduation {
     
     
-    public partial class list {
+    public partial class delete {
         
         /// <summary>
         /// ctrlHeader control.
@@ -20,6 +20,33 @@ namespace UniversityGradeManager.Views.Graduation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::UniversityGradeManager.Views.Template.Header ctrlHeader;
+        
+        /// <summary>
+        /// frmEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmEdit;
+        
+        /// <summary>
+        /// lblErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+        
+        /// <summary>
+        /// btnYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnYes;
         
         /// <summary>
         /// ctrlFooter control.

@@ -1,0 +1,212 @@
+USE [master]
+GO
+
+/****** Object:  Database [GraduationManager]    Script Date: 06/11/2016 19:08:44 ******/
+CREATE DATABASE [GraduationManager]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'GraduationManager', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\GraduationManager.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'GraduationManager_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\GraduationManager_log.ldf' , SIZE = 2048KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+ALTER DATABASE [GraduationManager] SET COMPATIBILITY_LEVEL = 120
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [GraduationManager].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [GraduationManager] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [GraduationManager] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [GraduationManager] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [GraduationManager] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [GraduationManager] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [GraduationManager] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [GraduationManager] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [GraduationManager] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [GraduationManager] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [GraduationManager] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+
+ALTER DATABASE [GraduationManager] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [GraduationManager] SET  READ_WRITE 
+GO
+
+USE [GraduationManager]
+GO
+
+/****** Object:  Table [dbo].[Discipline]    Script Date: 06/11/2016 19:10:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+USE [GraduationManager]
+GO
+
+/****** Object:  Table [dbo].[Graduation]    Script Date: 06/11/2016 19:10:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Graduation](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_Graduation] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+USE [GraduationManager]
+GO
+
+/****** Object:  Table [dbo].[Period]    Script Date: 06/11/2016 19:10:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Period](
+	[Graduation_Id] [int] NOT NULL,
+	[Number] [int] NOT NULL,
+ CONSTRAINT [PK_Period] PRIMARY KEY CLUSTERED 
+(
+	[Graduation_Id] ASC,
+	[Number] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Period]  WITH CHECK ADD  CONSTRAINT [FK_Period_Graduation] FOREIGN KEY([Graduation_Id])
+REFERENCES [dbo].[Graduation] ([Id])
+GO
+
+ALTER TABLE [dbo].[Period] CHECK CONSTRAINT [FK_Period_Graduation]
+GO
+
+
+CREATE TABLE [dbo].[Discipline](
+	[Code] [varchar](50) NOT NULL,
+	[Period_Graduation_Id] [int] NOT NULL,
+	[Period_Number] [int] NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[TheorycClassesCount] [int] NOT NULL,
+	[PractiseClassesCount] [int] NOT NULL,
+	[NumberOfCredits] [int] NOT NULL,
+	[Workload] [int] NOT NULL,
+	[ClockHours] [int] NOT NULL,
+ CONSTRAINT [PK_Discipline] PRIMARY KEY CLUSTERED 
+(
+	[Code] ASC,
+	[Period_Graduation_Id] ASC,
+	[Period_Number] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Discipline]  WITH CHECK ADD  CONSTRAINT [FK_Discipline_Period] FOREIGN KEY([Period_Graduation_Id], [Period_Number])
+REFERENCES [dbo].[Period] ([Graduation_Id], [Number])
+GO
+
+ALTER TABLE [dbo].[Discipline] CHECK CONSTRAINT [FK_Discipline_Period]
+GO
+

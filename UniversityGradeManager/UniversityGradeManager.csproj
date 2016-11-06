@@ -98,10 +98,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="resources\css\bootstrap-theme.css.map" />
-    <Content Include="resources\css\bootstrap-theme.min.css.map" />
-    <Content Include="resources\css\bootstrap.css.map" />
-    <Content Include="resources\css\bootstrap.min.css.map" />
+    <Content Include="resources\css\bootstrap-theme.min.css" />
+    <Content Include="resources\css\bootstrap.min.css" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.woff" />
@@ -114,17 +112,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\css\bootstrap-theme.css" />
-    <Content Include="resources\css\bootstrap-theme.min.css" />
-    <Content Include="resources\css\bootstrap.css" />
-    <Content Include="resources\css\bootstrap.min.css" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\js\bootstrap.js" />
     <Content Include="resources\js\bootstrap.min.js" />
     <Content Include="resources\js\npm.js" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Views\Graduation\add.aspx" />
+    <Content Include="Views\Graduation\delete.aspx" />
+    <Content Include="Views\Graduation\edit.aspx" />
     <Content Include="Views\Graduation\list.aspx" />
+    <Content Include="Views\Graduation\profile.aspx" />
     <Content Include="Views\Template\Footer.ascx" />
     <Content Include="Views\Template\GraduationGrade\Discipline.ascx" />
     <Content Include="Views\Template\GraduationGrade\Graduation.ascx" />
@@ -133,16 +131,48 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\DAO.cs" />
+    <Compile Include="DAL\DeleteDAO.cs" />
+    <Compile Include="DAL\GraduationDAO.cs" />
     <Compile Include="Entities\Discipline.cs" />
     <Compile Include="Entities\Graduation.cs" />
     <Compile Include="Entities\Period.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Graduation\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Graduation\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Graduation\delete.aspx.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Graduation\delete.aspx.designer.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Graduation\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Graduation\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Graduation\list.aspx.cs">
       <DependentUpon>list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Graduation\list.aspx.designer.cs">
       <DependentUpon>list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Graduation\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Graduation\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Template\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>

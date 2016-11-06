@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="ctrl" TagName="Period" Src="~/Views/Template/GraduationGrade/Period.ascx" %>
 
 <div class="row">
-    <h2 class="page-header">Curso <%= Entity.Name %></h2>
+    <h1 class="page-header">Curso <%= Entity.Name %></h1>
 
     <asp:Repeater runat="server" ID="rptPeriods" DataSource="<%# Entity.Periods %>">
         <ItemTemplate>
