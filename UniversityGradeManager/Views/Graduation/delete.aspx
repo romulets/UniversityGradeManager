@@ -8,7 +8,7 @@
 <h1 class="page-header">Deletar Curso <%= Graduation.Name %></h1>
 
 <form id="frmEdit" runat="server">
-    <asp:label runat="server" id="lblErrorMessage" class="alert alert-danger"></asp:label>
+    <asp:panel runat="server" id="pnErrorMessage" class="alert alert-danger"></asp:panel>
 
     <div class="alert alert-warning">
         <span><strong>Cuidado!</strong> As ações confirmadas aqui não poderão ser desfeitas. Deseja deletar o curso <strong><%= Graduation.Name %></strong> e todas as suas relações?</span>

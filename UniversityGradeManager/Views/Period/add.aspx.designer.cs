@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UniversityGradeManager.Views.Graduation {
+namespace UniversityGradeManager.Views.Period {
     
     
-    public partial class delete {
+    public partial class add {
         
         /// <summary>
         /// ctrlHeader control.
@@ -22,13 +22,13 @@ namespace UniversityGradeManager.Views.Graduation {
         protected global::UniversityGradeManager.Views.Template.Header ctrlHeader;
         
         /// <summary>
-        /// frmEdit control.
+        /// frmAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmEdit;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmAdd;
         
         /// <summary>
         /// pnErrorMessage control.
@@ -40,13 +40,31 @@ namespace UniversityGradeManager.Views.Graduation {
         protected global::System.Web.UI.WebControls.Panel pnErrorMessage;
         
         /// <summary>
-        /// btnYes control.
+        /// lblNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnYes;
+        protected global::System.Web.UI.WebControls.Label lblNumber;
+        
+        /// <summary>
+        /// txtNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumber;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
         /// ctrlFooter control.

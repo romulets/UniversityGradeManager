@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using UniversityGradeManager.DAL;
 using UniversityGradeManager.Exceptions;
@@ -17,8 +18,10 @@ namespace UniversityGradeManager.Views.Graduation
         {
             set
             {
-                lblErrorMessage.Visible = true;
-                lblErrorMessage.Text = value;
+                pnErrorMessage.Visible = true;
+                HtmlGenericControl ctrl = new HtmlGenericControl("span");
+                ctrl.InnerText = value;
+                pnErrorMessage.Controls.Add(ctrl);
             }
         }
 
@@ -30,7 +33,7 @@ namespace UniversityGradeManager.Views.Graduation
                 int.TryParse(Request.Params["Id"], out id);
 
                 using (GraduationDAO dao = new GraduationDAO())
-                    Graduation = dao.FindByIdWithoutRelations(id);
+                    Graduation = dao.FindByPkWithoutRelations(id);
             }
             catch (EntityNotFoundException ex)
             {
@@ -43,7 +46,7 @@ namespace UniversityGradeManager.Views.Graduation
             if (!IsPostBack)
                 txtName.Text = Graduation.Name;
 
-            lblErrorMessage.Visible = false;
+            pnErrorMessage.Visible = false;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -60,7 +63,7 @@ namespace UniversityGradeManager.Views.Graduation
             {
                 using (GraduationDAO dao = new GraduationDAO())
                     dao.Update(Graduation);
-                Server.Transfer("profile.aspx?Id=" + Graduation.Id, true);
+                Response.Redirect("profile.aspx?Id=" + Graduation.Id, true);
             }
             catch (Exception ex)
             {

@@ -123,6 +123,7 @@
     <Content Include="Views\Graduation\edit.aspx" />
     <Content Include="Views\Graduation\list.aspx" />
     <Content Include="Views\Graduation\profile.aspx" />
+    <Content Include="Views\Period\add.aspx" />
     <Content Include="Views\Template\Footer.ascx" />
     <Content Include="Views\Template\GraduationGrade\Discipline.ascx" />
     <Content Include="Views\Template\GraduationGrade\Graduation.ascx" />
@@ -134,6 +135,7 @@
     <Compile Include="DAL\DAO.cs" />
     <Compile Include="DAL\DeleteDAO.cs" />
     <Compile Include="DAL\GraduationDAO.cs" />
+    <Compile Include="DAL\PeriodDao.cs" />
     <Compile Include="Entities\Discipline.cs" />
     <Compile Include="Entities\Graduation.cs" />
     <Compile Include="Entities\Period.cs" />
@@ -173,6 +175,13 @@
     </Compile>
     <Compile Include="Views\Graduation\profile.aspx.designer.cs">
       <DependentUpon>profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Period\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Period\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Template\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>

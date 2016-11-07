@@ -8,8 +8,11 @@ namespace UniversityGradeManager.Entities
     public class Period
     {
 
+        public Graduation Graduation { get; set; }
+
         private int _number;
         private List<Discipline> _discplines;
+
 
         public Period()
         {

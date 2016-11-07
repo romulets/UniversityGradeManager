@@ -12,7 +12,7 @@
     <tr>
         <th>Código</th>
         <th>Nome</th>
-        <th>- </th>
+        <th></th>
     </tr>
 
     <% foreach (UniversityGradeManager.Entities.Graduation graduation in Graduations) %>
@@ -20,7 +20,7 @@
     <tr>
         <td><%= graduation.Id %></td>
         <td><%= graduation.Name %></td>
-        <td><a href="/Views/Graduation/profile.aspx?Id=<%= graduation.Id %>" class="btn btn-info">Ver Curso</a></td>
+        <td class="text-right"><a href="/Views/Graduation/profile.aspx?Id=<%= graduation.Id %>" class="btn btn-info btn-xs">Ver Curso</a></td>
     </tr>
     <% } %>
 </table>

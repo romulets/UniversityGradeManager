@@ -8,7 +8,7 @@
 <h1 class="page-header">Editar Curso <%= Graduation.Name %></h1>
 
 <form id="frmEdit" runat="server">
-    <asp:label runat="server" id="lblErrorMessage" class="alert alert-danger"></asp:label>
+    <asp:panel runat="server" id="pnErrorMessage" class="alert alert-danger"></asp:panel>
 
     <div class="form-group">
         <asp:label runat="server" id="lblName" text="* Nome: "></asp:label>

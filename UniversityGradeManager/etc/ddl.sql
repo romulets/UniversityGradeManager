@@ -1,129 +1,3 @@
-USE [master]
-GO
-
-/****** Object:  Database [GraduationManager]    Script Date: 06/11/2016 19:08:44 ******/
-CREATE DATABASE [GraduationManager]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'GraduationManager', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\GraduationManager.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
- LOG ON 
-( NAME = N'GraduationManager_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\GraduationManager_log.ldf' , SIZE = 2048KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
-GO
-
-ALTER DATABASE [GraduationManager] SET COMPATIBILITY_LEVEL = 120
-GO
-
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [GraduationManager].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-
-ALTER DATABASE [GraduationManager] SET ANSI_NULL_DEFAULT OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET ANSI_NULLS OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET ANSI_PADDING OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET ANSI_WARNINGS OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET ARITHABORT OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET AUTO_CLOSE OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET AUTO_SHRINK OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET AUTO_UPDATE_STATISTICS ON 
-GO
-
-ALTER DATABASE [GraduationManager] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET CURSOR_DEFAULT  GLOBAL 
-GO
-
-ALTER DATABASE [GraduationManager] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET NUMERIC_ROUNDABORT OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET QUOTED_IDENTIFIER OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET RECURSIVE_TRIGGERS OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET  DISABLE_BROKER 
-GO
-
-ALTER DATABASE [GraduationManager] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET TRUSTWORTHY OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET PARAMETERIZATION SIMPLE 
-GO
-
-ALTER DATABASE [GraduationManager] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET HONOR_BROKER_PRIORITY OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET RECOVERY SIMPLE 
-GO
-
-ALTER DATABASE [GraduationManager] SET  MULTI_USER 
-GO
-
-ALTER DATABASE [GraduationManager] SET PAGE_VERIFY CHECKSUM  
-GO
-
-ALTER DATABASE [GraduationManager] SET DB_CHAINING OFF 
-GO
-
-ALTER DATABASE [GraduationManager] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-
-ALTER DATABASE [GraduationManager] SET TARGET_RECOVERY_TIME = 0 SECONDS 
-GO
-
-ALTER DATABASE [GraduationManager] SET DELAYED_DURABILITY = DISABLED 
-GO
-
-ALTER DATABASE [GraduationManager] SET  READ_WRITE 
-GO
-
-USE [GraduationManager]
-GO
-
-/****** Object:  Table [dbo].[Discipline]    Script Date: 06/11/2016 19:10:20 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-SET ANSI_PADDING ON
-GO
-
-USE [GraduationManager]
-GO
 
 /****** Object:  Table [dbo].[Graduation]    Script Date: 06/11/2016 19:10:39 ******/
 SET ANSI_NULLS ON
@@ -147,10 +21,6 @@ CREATE TABLE [dbo].[Graduation](
 GO
 
 SET ANSI_PADDING OFF
-GO
-
-
-USE [GraduationManager]
 GO
 
 /****** Object:  Table [dbo].[Period]    Script Date: 06/11/2016 19:10:57 ******/
@@ -179,6 +49,15 @@ GO
 ALTER TABLE [dbo].[Period] CHECK CONSTRAINT [FK_Period_Graduation]
 GO
 
+/****** Object:  Table [dbo].[Discipline]    Script Date: 06/11/2016 19:10:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [dbo].[Discipline](
 	[Code] [varchar](50) NOT NULL,

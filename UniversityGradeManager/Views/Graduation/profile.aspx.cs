@@ -23,7 +23,7 @@ namespace UniversityGradeManager.Views.Graduation
                 int.TryParse(Request.Params["Id"], out id);
 
                 using (GraduationDAO dao = new GraduationDAO())
-                    Graduation = dao.FindByIdWithoutRelations(id);
+                    Graduation = dao.FindByPkWithPeriods(id);
             }
             catch (EntityNotFoundException ex)
             {

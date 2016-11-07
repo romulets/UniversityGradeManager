@@ -31,13 +31,13 @@ namespace UniversityGradeManager.Views.Graduation {
         protected global::System.Web.UI.HtmlControls.HtmlForm frmEdit;
         
         /// <summary>
-        /// lblErrorMessage control.
+        /// pnErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+        protected global::System.Web.UI.WebControls.Panel pnErrorMessage;
         
         /// <summary>
         /// lblName control.
