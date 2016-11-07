@@ -8,6 +8,8 @@ namespace UniversityGradeManager.Entities
     public class Discipline
     {
 
+        public Period Period { get; set; }
+
         private string _code;
         private string _name;
         private int _theorycClassesCount;
