@@ -15,7 +15,7 @@
         <asp:textbox runat="server" id="txtName" cssclass="form-control"></asp:textbox>
     </div>
 
-    <asp:button runat="server" id="btnSave" text="Salvar" cssclass="btn btn-default" onclick="btnSave_Click" />
+    <asp:button runat="server" id="btnSave" text="Salvar" cssclass="btn btn-success" onclick="btnSave_Click" />
 </form>
 
 <ctrl:Footer runat="server" ID="ctrlFooter" />

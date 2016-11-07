@@ -15,7 +15,7 @@
     </div>
 
     <asp:button runat="server" id="btnYes" text="Sim" cssclass="btn btn-danger" onclick="btnYes_Click" />
-    <a href="/Views/Graduation/profile.aspx?Id=<%= Graduation.Id %>" class="btn btn-default">Não</a>
+    <a href="/Views/Graduation/profile.aspx?Id=<%= Graduation.Id %>" class="btn btn-warning">Não</a>
 </form>
 
 <ctrl:Footer runat="server" ID="ctrlFooter" />
