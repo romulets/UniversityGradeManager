@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using UniversityGradeManager.Entities;
 using UniversityGradeManager.Exceptions;
+using UniversityGradeManager.Helpers;
 
 namespace UniversityGradeManager.DAL
 {
@@ -19,7 +20,7 @@ namespace UniversityGradeManager.DAL
         {
             Period period = null;
 
-            string query = "SELECT TOP 1 Period.Number, Graduation.Id as Graduation_Id, Graduation.Name as Graduation_Name FROM Period " +
+            string query = "SELECT TOP 1 Period.Number as Period_Number, Graduation.Id as Graduation_Id, Graduation.Name as Graduation_Name FROM Period " +
                            "INNER JOIN Graduation ON Graduation.Id = Period.Graduation_id " +
                            "WHERE Period.Graduation_id = @graduation AND Period.Number = @period";
 
@@ -30,12 +31,8 @@ namespace UniversityGradeManager.DAL
 
             if (reader.Read())
             {
-                period = new Period();
-                period.Number = Convert.ToInt32(reader["Number"].ToString());
-
-                period.Graduation = new Graduation();
-                period.Graduation.Id = Convert.ToInt32(reader["Graduation_Id"].ToString());
-                period.Graduation.Name = reader["Graduation_Name"].ToString();
+                period = EntityHydratorHelper.HydratePeriod(reader);
+                period.Graduation = EntityHydratorHelper.HydrateGraduation(reader);
             }
             else
             {
@@ -50,14 +47,14 @@ namespace UniversityGradeManager.DAL
             Period period = null;
             Discipline discipline;
 
-            string query = "SELECT TOP 1 Period.Number, " +
+            string query = "SELECT Period.Number as Period_Number, " +
                            "Graduation.Id as Graduation_Id, Graduation.Name as Graduation_Name, " +
-                           "Period.Code as Period_Code, Period.Name as Period_Name, Period.TheorycClassesCount as Period_TheorycClassesCount, " +
-                           "Period.PractiseClassesCount as Period_PractiseClassesCount, Period.NumberOfCredits as Period_NumberOfCredits, " +
-                           "Period.Workload as Period_Workload, Period.ClockHours as Period_ClockHours" +
+                           "Discipline.Code as Discipline_Code, Discipline.Name as Discipline_Name, Discipline.TheorycClassesCount as Discipline_TheorycClassesCount, " +
+                           "Discipline.PractiseClassesCount as Discipline_PractiseClassesCount, Discipline.NumberOfCredits as Discipline_NumberOfCredits, " +
+                           "Discipline.Workload as Discipline_Workload, Discipline.ClockHours as Discipline_ClockHours " +
                            "FROM Period " +
                            "INNER JOIN Graduation ON Graduation.Id = Period.Graduation_id " +
-                           "LEFT JOIN Discipline ON Discipline.Period_Number = Period.Number AND Discipline.Period_Discipline_Id = Period.Discipline_Id " +
+                           "LEFT JOIN Discipline ON Discipline.Period_Number = Period.Number AND Discipline.Period_Graduation_Id = Period.Graduation_Id " +
                            "WHERE Period.Graduation_id = @graduation AND Period.Number = @period";
 
             SqlCommand cmd = new SqlCommand(query, Conn);
@@ -69,25 +66,14 @@ namespace UniversityGradeManager.DAL
             {
                 if (period == null)
                 {
-                    period = new Period();
-                    period.Number = Convert.ToInt32(reader["Number"].ToString());
-
-                    period.Graduation = new Graduation();
-                    period.Graduation.Id = Convert.ToInt32(reader["Graduation_Id"].ToString());
-                    period.Graduation.Name = reader["Graduation_Name"].ToString();
+                    period = EntityHydratorHelper.HydratePeriod(reader);
+                    period.Graduation = EntityHydratorHelper.HydrateGraduation(reader);
                 }
 
-                if (reader["Period_Code"].ToString().Length > 0)
+                if (reader["Discipline_Code"].ToString().Length > 0)
                 {
-                    discipline = new Discipline();
+                    discipline = EntityHydratorHelper.HydrateDiscipline(reader);
                     discipline.Period = period;
-                    discipline.Code = reader["Period_Code"].ToString();
-                    discipline.Name = reader["Period_Name"].ToString();
-                    discipline.TheorycClassesCount = Convert.ToInt32(reader["Period_TheorycClassesCount"].ToString());
-                    discipline.PractiseClassesCount = Convert.ToInt32(reader["Period_PractiseClassesCount"].ToString());
-                    discipline.NumberOfCredits = Convert.ToInt32(reader["Period_NumberOfCredits"].ToString());
-                    discipline.Workload = Convert.ToInt32(reader["Period_Workload"].ToString());
-                    discipline.ClockHours = Convert.ToInt32(reader["Period_ClockHours"].ToString());
                     period.Discplines.Add(discipline);
                 }
 

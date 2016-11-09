@@ -124,6 +124,7 @@
     <Content Include="Views\Graduation\list.aspx" />
     <Content Include="Views\Graduation\profile.aspx" />
     <Content Include="Views\Period\add.aspx" />
+    <Content Include="Views\Period\profile.aspx" />
     <Content Include="Views\Template\Footer.ascx" />
     <Content Include="Views\Template\GraduationGrade\Discipline.ascx" />
     <Content Include="Views\Template\GraduationGrade\Graduation.ascx" />
@@ -140,6 +141,7 @@
     <Compile Include="Entities\Graduation.cs" />
     <Compile Include="Entities\Period.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Helpers\EntityHydratorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Graduation\add.aspx.cs">
       <DependentUpon>add.aspx</DependentUpon>
@@ -182,6 +184,13 @@
     </Compile>
     <Compile Include="Views\Period\add.aspx.designer.cs">
       <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Period\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Period\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Template\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>

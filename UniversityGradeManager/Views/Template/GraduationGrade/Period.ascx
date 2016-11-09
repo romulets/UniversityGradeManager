@@ -3,7 +3,7 @@
 
 <table class="table table-striped">
     <tr>
-        <th colspan="6"><%= Entity.Id %>° Período</th>
+        <th colspan="6"><%= Entity.Number %>° Período</th>
     </tr>
     <tr>
         <th>Disciplinas</th>

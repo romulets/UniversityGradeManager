@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using UniversityGradeManager.Entities;
 using UniversityGradeManager.Exceptions;
+using UniversityGradeManager.Helpers;
 
 namespace UniversityGradeManager.DAL
 {
@@ -16,15 +17,13 @@ namespace UniversityGradeManager.DAL
             List<Graduation> graduations = new List<Graduation>();
             Graduation graduation;
 
-            string query = "SELECT Id, Name FROM Graduation";
+            string query = "SELECT Id as Graduation_Id, Name as Graduation_Name FROM Graduation";
             SqlCommand cmd = new SqlCommand(query, Conn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                graduation = new Graduation();
-                graduation.Id = Convert.ToInt32(reader["Id"].ToString());
-                graduation.Name = reader["Name"].ToString();
+                graduation = EntityHydratorHelper.HydrateGraduation(reader);
                 graduations.Add(graduation);
             }
 
@@ -35,22 +34,16 @@ namespace UniversityGradeManager.DAL
         {
             Graduation graduation = null;
 
-            string query = "SELECT TOP 1 Id, Name FROM Graduation WHERE Id = @id";
+            string query = "SELECT TOP 1 Id as Graduation_Id, Name as Graduation_Name FROM Graduation WHERE Id = @id";
             SqlCommand cmd = new SqlCommand(query, Conn);
             cmd.Parameters.Add(new SqlParameter("@id", id));
 
             SqlDataReader reader = cmd.ExecuteReader();
 
             if (reader.Read())
-            {
-                graduation = new Graduation();
-                graduation.Id = Convert.ToInt32(reader["Id"].ToString());
-                graduation.Name = reader["Name"].ToString();
-            }
+                graduation = EntityHydratorHelper.HydrateGraduation(reader);
             else
-            {
                 throw new EntityNotFoundException("Curso não encontrado");
-            }
 
             return graduation;
         }
@@ -60,7 +53,8 @@ namespace UniversityGradeManager.DAL
             Graduation graduation = null;
             int periodNumber;
 
-            string query = "SELECT Graduation.Id, Graduation.Name, Period.Number as Period_Number FROM Graduation " +
+            string query = "SELECT Graduation.Id as Graduation_Id, Graduation.Name as Graduation_Name, " +
+                           "Period.Number as Period_Number FROM Graduation " +
                            "LEFT JOIN Period ON Graduation.Id = Period.Graduation_Id " +
                            "WHERE Graduation.Id = @id";
 
@@ -72,15 +66,11 @@ namespace UniversityGradeManager.DAL
             while (reader.Read())
             {
                 if (graduation == null)
-                {
-                    graduation = new Graduation();
-                    graduation.Id = Convert.ToInt32(reader["Id"].ToString());
-                    graduation.Name = reader["Name"].ToString();
-                }
+                    graduation = EntityHydratorHelper.HydrateGraduation(reader);
 
                 periodNumber = -1;
                 if (int.TryParse(reader["Period_Number"].ToString(), out periodNumber))
-                    graduation.Periods.Add(new Period { Number = periodNumber });
+                    graduation.Periods.Add(EntityHydratorHelper.HydratePeriod(reader));
             }
 
 
