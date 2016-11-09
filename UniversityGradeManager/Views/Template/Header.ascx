@@ -7,6 +7,7 @@
     <title><%= TitlePage %></title>
 
     <link rel="stylesheet" runat="server" media="screen" href="/resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" runat="server" media="screen" href="/resources/css/main.css" />
 </head>
 
 <body>

@@ -98,8 +98,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="resources\css\bootstrap-theme.min.css" />
     <Content Include="resources\css\bootstrap.min.css" />
+    <Content Include="resources\css\main.css" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="resources\fonts\glyphicons-halflings-regular.woff" />
@@ -113,9 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="resources\js\bootstrap.js" />
-    <Content Include="resources\js\bootstrap.min.js" />
-    <Content Include="resources\js\npm.js" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Views\Graduation\add.aspx" />
