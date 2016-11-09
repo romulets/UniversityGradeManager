@@ -8,12 +8,11 @@ using System.Web.UI.WebControls;
 using UniversityGradeManager.DAL;
 using UniversityGradeManager.Exceptions;
 
-namespace UniversityGradeManager.Views.Graduation
+namespace UniversityGradeManager.Views.Discipline
 {
-    public partial class delete : System.Web.UI.Page
+    public partial class add : System.Web.UI.Page
     {
-
-        public Entities.Graduation Graduation { get; set; }
+        public Entities.Period Period { get; set; }
 
         public string ErrorMessage
         {
@@ -30,11 +29,13 @@ namespace UniversityGradeManager.Views.Graduation
         {
             try
             {
-                int id = -1;
-                int.TryParse(Request.Params["Id"], out id);
+                int graduationId = -1;
+                int periodNumber = -1;
+                int.TryParse(Request.Params["Graduation"], out graduationId);
+                int.TryParse(Request.Params["Period"], out periodNumber);
 
-                using (GraduationDAO dao = new GraduationDAO())
-                    Graduation = dao.FindByPkWithoutRelations(id);
+                using (PeriodDao dao = new PeriodDao())
+                    Period = dao.FindByPkWithoutDisciplines(graduationId, periodNumber);
             }
             catch (EntityNotFoundException ex)
             {
@@ -47,19 +48,9 @@ namespace UniversityGradeManager.Views.Graduation
             pnErrorMessage.Visible = false;
         }
 
-        protected void btnYes_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (DeleteDAO dao = new DeleteDAO())
-                    dao.Delete(Graduation);
-                Response.Redirect("list.aspx");
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
+            ErrorMessage = "Not implemented.";
         }
-
     }
 }

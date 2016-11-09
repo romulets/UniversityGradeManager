@@ -5,8 +5,7 @@
 
 <ctrl:Header runat="server" ID="ctrlHeader" TitlePage="Listagem de Cursos" />
 
-<h1 class="pull-left">Graduações Cadastradas</h1>
-<a href="/Views/Graduation/add.aspx" class="btn btn-default pull-right">Adicionar Curso</a>
+<h1 class="page-header">Cursos Cadastrados <a href="/Views/Graduation/add.aspx" class="btn btn-default pull-right">Adicionar Curso</a></h1>
 
 <table class="table table-striped">
     <tr>

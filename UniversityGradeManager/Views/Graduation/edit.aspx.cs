@@ -63,7 +63,7 @@ namespace UniversityGradeManager.Views.Graduation
             {
                 using (GraduationDAO dao = new GraduationDAO())
                     dao.Update(Graduation);
-                Response.Redirect("profile.aspx?Id=" + Graduation.Id, true);
+                Response.Redirect("profile.aspx?Id=" + Graduation.Id);
             }
             catch (Exception ex)
             {

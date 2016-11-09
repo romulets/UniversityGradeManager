@@ -14,7 +14,9 @@
     </div>
 
     <div class="col-md-6 text-right">
-        <a href="../Period/delete.aspx?Graduation=<%= Period.Graduation.Id %>&Period=<%= Period.Number %>&" class="btn btn-danger">Deletar Período</a>
+        <a href="../Discipline/add.aspx?Graduation=<%= Period.Graduation.Id %>&Period=<%= Period.Number %>" class="btn btn-success">Adicionar Disciplina</a>
+
+        <a href="../Period/delete.aspx?Graduation=<%= Period.Graduation.Id %>&Period=<%= Period.Number %>" class="btn btn-danger">Deletar Período</a>
     </div>
 </div>
 

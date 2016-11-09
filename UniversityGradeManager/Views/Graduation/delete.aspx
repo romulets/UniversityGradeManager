@@ -5,7 +5,7 @@
 
 <ctrl:Header runat="server" ID="ctrlHeader" TitlePage="Deletar Curso" />
 
-<h1 class="page-header">Deletar Curso <%= Graduation.Name %></h1>
+<h1 class="page-header">Deletar Curso <%= Graduation.Name %>?</h1>
 
 <form id="frmEdit" runat="server">
     <asp:panel runat="server" id="pnErrorMessage" class="alert alert-danger"></asp:panel>

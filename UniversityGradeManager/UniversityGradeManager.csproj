@@ -113,14 +113,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="scripts\ai.0.15.0-build58334.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Views\Discipline\add.aspx" />
     <Content Include="Views\Graduation\add.aspx" />
     <Content Include="Views\Graduation\delete.aspx" />
     <Content Include="Views\Graduation\edit.aspx" />
     <Content Include="Views\Graduation\list.aspx" />
     <Content Include="Views\Graduation\profile.aspx" />
     <Content Include="Views\Period\add.aspx" />
+    <Content Include="Views\Period\delete.aspx" />
     <Content Include="Views\Period\profile.aspx" />
     <Content Include="Views\Template\Footer.ascx" />
     <Content Include="Views\Template\GraduationGrade\Discipline.ascx" />
@@ -140,6 +140,13 @@
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Helpers\EntityHydratorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Discipline\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Discipline\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Graduation\add.aspx.cs">
       <DependentUpon>add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,6 +188,13 @@
     </Compile>
     <Compile Include="Views\Period\add.aspx.designer.cs">
       <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Period\delete.aspx.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Period\delete.aspx.designer.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Period\profile.aspx.cs">
       <DependentUpon>profile.aspx</DependentUpon>

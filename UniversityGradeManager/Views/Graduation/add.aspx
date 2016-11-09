@@ -16,6 +16,7 @@
     </div>
 
     <asp:button runat="server" id="btnSave" text="Salvar" cssclass="btn btn-success" onclick="btnSave_Click" />
+    <a href="list.aspx" class="btn btn-danger">Cancelar</a>
 </form>
 
 <ctrl:Footer runat="server" ID="ctrlFooter" />
