@@ -3,7 +3,7 @@
 
 <table class="table table-striped">
     <tr>
-        <th colspan="6"><%= Entity.Number %>° Período</th>
+        <th colspan="6"><a href="/Views/Period/profile.aspx?Graduation=<%= Entity.Graduation.Id %>&Period=<%= Entity.Number %>"><%= Entity.Number %>° Período</a></th>
     </tr>
     <tr>
         <th>Disciplinas</th>
@@ -14,7 +14,7 @@
         <th>HR</th>
     </tr>
 
-     <asp:Repeater runat="server" ID="rptPeriods" DataSource="<%# Entity.Discplines %>">
+    <asp:Repeater runat="server" ID="rptPeriods" DataSource="<%# Entity.Discplines %>">
         <ItemTemplate>
             <ctrl:Discipline runat="server" ID="ctrlDiscipline" Entity="<%# Container.DataItem %>" />
         </ItemTemplate>

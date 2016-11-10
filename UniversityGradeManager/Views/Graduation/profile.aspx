@@ -8,6 +8,7 @@
 <h1 class="page-header"><%= Graduation.Name %></h1>
 <div class="text-right">
     <a href="/Views/Graduation/edit.aspx?Id=<%= Graduation.Id %>" class="btn btn-success">Editar Curso</a>
+    <a href="/Views/Graduation/fullgrade.aspx?Id=<%= Graduation.Id %>" class="btn btn-info">Ver grade completa</a>
     <a href="/Views/Graduation/delete.aspx?Id=<%= Graduation.Id %>" class="btn btn-danger">Deletar Curso</a>
 </div>
 

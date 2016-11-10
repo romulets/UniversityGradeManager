@@ -80,6 +80,63 @@ namespace UniversityGradeManager.DAL
             return graduation;
         }
 
+        public Graduation FindByPkWithPeriodsAndDisciplines(int id)
+        {
+            Graduation graduation = null;
+            Period period = null;
+            Discipline discipline = null;
+            int periodNumber;
+            string query = "SELECT Period.Number as Period_Number, " +
+                         "Graduation.Id as Graduation_Id, Graduation.Name as Graduation_Name, " +
+                         "Discipline.Code as Discipline_Code, Discipline.Name as Discipline_Name, Discipline.TheorycClassesCount as Discipline_TheorycClassesCount, " +
+                         "Discipline.PractiseClassesCount as Discipline_PractiseClassesCount, Discipline.NumberOfCredits as Discipline_NumberOfCredits, " +
+                         "Discipline.Workload as Discipline_Workload, Discipline.ClockHours as Discipline_ClockHours " +
+                         "FROM Graduation " +
+                         "LEFT JOIN Period ON Period.Graduation_Id = Graduation.Id " +
+                         "LEFT JOIN Discipline ON Discipline.Period_Graduation_Id = Period.Graduation_Id AND Discipline.Period_Number = Period.Number " +
+                         "WHERE Graduation.Id = @id ORDER BY Period.Number ASC, Discipline.Code ASC";
+            SqlCommand cmd = new SqlCommand(query, Conn);
+            cmd.Parameters.Add(new SqlParameter("@id", id));
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                period = null;
+                discipline = null;
+
+                if (graduation == null)
+                    graduation = EntityHydratorHelper.HydrateGraduation(reader);
+
+                periodNumber = -1;
+                if (int.TryParse(reader["Period_Number"].ToString(), out periodNumber))
+                {
+                    period = graduation.Periods.SingleOrDefault(p => p.Number == periodNumber);
+
+                    if (period == null)
+                    {
+                        period = EntityHydratorHelper.HydratePeriod(reader);
+                        period.Graduation = graduation;
+                        graduation.Periods.Add(period);
+                    }
+
+                    if (reader["Discipline_Code"].ToString().Length > 0)
+                    {
+                        discipline = EntityHydratorHelper.HydrateDiscipline(reader);
+                        discipline.Period = period;
+                        period.Discplines.Add(discipline);
+                    }
+
+                }
+
+
+            }
+
+            if (graduation == null)
+                throw new EntityNotFoundException("Curso não encontrado");
+
+            return graduation;
+        }
+
         public void Insert(Graduation graduation)
         {
             string query = "INSERT INTO Graduation (Name) OUTPUT INSERTED.ID VALUES (@name)";
