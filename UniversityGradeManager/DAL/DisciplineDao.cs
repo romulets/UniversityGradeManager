@@ -62,7 +62,7 @@ namespace UniversityGradeManager.DAL
 
         public void Update(Discipline discipline)
         {
-            string query = "Update Discipline SET Period_Number @periodNumber, Name = @name, TheorycClassesCount = @theorycClassesCount, " +
+            string query = "Update Discipline SET Period_Number = @periodNumber, Name = @name, TheorycClassesCount = @theorycClassesCount, " +
                 "PractiseClassesCount = @practiseClassesCount, NumberOfCredits = @numberOfCredits, Workload = @Workload, " +
                 "ClockHours = @ClockHours WHERE Code = @code AND Period_Graduation_Id = @periodGraduationId";
             SqlCommand cmd = new SqlCommand(query, Conn);

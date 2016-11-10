@@ -114,6 +114,10 @@
   <ItemGroup>
     <Content Include="resources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Views\Discipline\add.aspx" />
+    <Content Include="Views\Discipline\delete.aspx" />
+    <Content Include="Views\Discipline\edit.aspx" />
+    <Content Include="Views\Discipline\profile.aspx" />
+    <Content Include="Views\Errors\notfound.aspx" />
     <Content Include="Views\Graduation\add.aspx" />
     <Content Include="Views\Graduation\delete.aspx" />
     <Content Include="Views\Graduation\edit.aspx" />
@@ -149,6 +153,34 @@
     </Compile>
     <Compile Include="Views\Discipline\add.aspx.designer.cs">
       <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Discipline\delete.aspx.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Discipline\delete.aspx.designer.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Discipline\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Discipline\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Discipline\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Discipline\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Errors\notfound.aspx.cs">
+      <DependentUpon>notfound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Errors\notfound.aspx.designer.cs">
+      <DependentUpon>notfound.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Graduation\add.aspx.cs">
       <DependentUpon>add.aspx</DependentUpon>

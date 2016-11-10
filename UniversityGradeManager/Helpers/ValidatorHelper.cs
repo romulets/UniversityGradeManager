@@ -13,6 +13,20 @@ namespace UniversityGradeManager.Helpers
 
         public static void Validate(Discipline discipline)
         {
+            ValidateBoth(discipline);
+            ValidExists(discipline);
+
+        }
+
+        public static void Validate(Discipline discipline, string disciplineCode, int graduationId)
+        {
+            ValidateBoth(discipline);
+            if (discipline.Code != disciplineCode && discipline.Period.Graduation.Id != graduationId)
+                ValidExists(discipline);
+        }
+
+        private static void ValidateBoth(Discipline discipline)
+        {
             if (discipline.Code.Trim().Length == 0)
                 throw new Exception("O campo código não pode ficar vazio");
 
@@ -27,10 +41,13 @@ namespace UniversityGradeManager.Helpers
 
             ValidatePositive(discipline.TheorycClassesCount, "quantidade de aulas teoricas");
             ValidatePositive(discipline.PractiseClassesCount, "quantidade de aulas práticas");
-            ValidatePositive(discipline.NumberOfCredits, "quantidade créditos");
+            ValidatePositive(discipline.NumberOfCredits, "Quantidade de Créditos");
             ValidatePositive(discipline.Workload, "horas aula");
             ValidatePositive(discipline.ClockHours, "horas relógio");
+        }
 
+        private static void ValidExists(Discipline discipline)
+        {
             try
             {
                 using (DisciplineDao dao = new DisciplineDao())
@@ -39,7 +56,6 @@ namespace UniversityGradeManager.Helpers
                 throw new Exception("Já existe uma disciplina com esse código nesse curso");
             }
             catch (EntityNotFoundException e) { /* Entity not found, keep swimming! */}
-
         }
 
         private static void ValidatePositive(int field, string fieldName)

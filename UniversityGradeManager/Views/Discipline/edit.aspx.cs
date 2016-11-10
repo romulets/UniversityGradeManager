@@ -11,9 +11,9 @@ using UniversityGradeManager.Helpers;
 
 namespace UniversityGradeManager.Views.Discipline
 {
-    public partial class add : System.Web.UI.Page
+    public partial class edit : System.Web.UI.Page
     {
-        public Entities.Period Period { get; set; }
+        public Entities.Discipline Discipline { get; set; }
 
         public string ErrorMessage
         {
@@ -26,17 +26,17 @@ namespace UniversityGradeManager.Views.Discipline
             }
         }
 
-        protected void Page_Init(object sender, EventArgs e)
+        public void Page_Init(object sender, EventArgs e)
         {
             try
             {
                 int graduationId = -1;
-                int periodNumber = -1;
+                string disciplineCode;
                 int.TryParse(Request.Params["Graduation"], out graduationId);
-                int.TryParse(Request.Params["Period"], out periodNumber);
+                disciplineCode = Request.Params["Discipline"] ?? string.Empty;
 
-                using (PeriodDao dao = new PeriodDao())
-                    Period = dao.FindByPkWithoutDisciplines(graduationId, periodNumber);
+                using (DisciplineDao dao = new DisciplineDao())
+                    Discipline = dao.FindByPk(disciplineCode, graduationId);
             }
             catch (EntityNotFoundException ex)
             {
@@ -47,6 +47,16 @@ namespace UniversityGradeManager.Views.Discipline
         protected void Page_Load(object sender, EventArgs e)
         {
             pnErrorMessage.Visible = false;
+
+            if (!IsPostBack)
+            {
+                txtName.Text = Discipline.Name;
+                txtTheorycClassesCount.Text = Discipline.TheorycClassesCount.ToString();
+                txtPractiseClassesCount.Text = Discipline.PractiseClassesCount.ToString();
+                txtNumberOfCredits.Text = Discipline.NumberOfCredits.ToString();
+                txtWorkload.Text = Discipline.Workload.ToString();
+                txtClockHours.Text = Discipline.ClockHours.ToString();
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -55,9 +65,9 @@ namespace UniversityGradeManager.Views.Discipline
             {
                 Entities.Discipline discipline = ExtractDisciplineFromForm();
                 using (DisciplineDao dao = new DisciplineDao())
-                    dao.Insert(discipline);
+                    dao.Update(discipline);
 
-                Response.Redirect(string.Format("../Period/profile.aspx?Graduation={0}&Period={1}", Period.Graduation.Id, Period.Number));
+                Response.Redirect(string.Format("profile.aspx?Graduation={0}&Discipline={1}", Discipline.Period.Graduation.Id, Discipline.Code));
             }
             catch (Exception ex)
             {
@@ -67,17 +77,14 @@ namespace UniversityGradeManager.Views.Discipline
 
         protected Entities.Discipline ExtractDisciplineFromForm()
         {
-            Entities.Discipline discipline = new Entities.Discipline();
-            discipline.Period = Period;
-            discipline.Code = txtCode.Text;
-            discipline.Name = txtName.Text;
-            discipline.TheorycClassesCount = GetInt(txtTheorycClassesCount, "Quantidade de Aulas Teoricas");
-            discipline.PractiseClassesCount = GetInt(txtPractiseClassesCount, "Quantidade de Aulas Práticas");
-            discipline.NumberOfCredits = GetInt(txtNumberOfCredits, "Quantidade de Créditos");
-            discipline.Workload = GetInt(txtWorkload, "Horas Aula");
-            discipline.ClockHours = GetInt(txtClockHours, "Horas Relógio");
-            ValidatorHelper.Validate(discipline);
-            return discipline;
+            Discipline.Name = txtName.Text;
+            Discipline.TheorycClassesCount = GetInt(txtTheorycClassesCount, "Quantidade de Aulas Teoricas");
+            Discipline.PractiseClassesCount = GetInt(txtPractiseClassesCount, "Quantidade de Aulas Práticas");
+            Discipline.NumberOfCredits = GetInt(txtNumberOfCredits, "Quantidade de Créditos");
+            Discipline.Workload = GetInt(txtWorkload, "Horas Aula");
+            Discipline.ClockHours = GetInt(txtClockHours, "Horas Relógio");
+            ValidatorHelper.Validate(Discipline, Discipline.Code, Discipline.Period.Graduation.Id);
+            return Discipline;
         }
 
         private int GetInt(TextBox field, string fieldName)
